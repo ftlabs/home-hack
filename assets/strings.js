@@ -21,7 +21,7 @@
 /* eslint quotes: ["error", "double"] */
 
 // eslint-disable-next-line quotes
-const deepFreeze = require('deep-freeze');
+// const deepFreeze = require('deep-freeze');
 
 const categories = {
   "headquarters": {
@@ -129,10 +129,10 @@ const general = {
 };
 
 // Use deepFreeze to make the constant objects immutable so they are not unintentionally modified
-module.exports = deepFreeze({
+module.exports = {
   categories,
   content,
   cats,
   transitions,
   general
-});
+};
