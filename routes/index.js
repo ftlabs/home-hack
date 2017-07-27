@@ -4,6 +4,7 @@ const router = express.Router();
 
 const webApp = require('../bin/lib/content-interface');
 const sapi = require('../bin/lib/sapi');
+const capi = require('../bin/lib/capi');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -50,5 +51,21 @@ router.get('/search/:keyword', (req, res) => {
 	;
 
 });
+
+router.get('/content/:uuid', (req, res) => {
+
+	capi.uuid(req.params.uuid)
+		.then(data => {
+			res.json(data);
+		})
+		.catch(err => {
+			res.json({
+				status : 'err',
+				message : err
+			})
+		})
+	;
+
+})
 
 module.exports = router;
