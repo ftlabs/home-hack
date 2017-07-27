@@ -4,6 +4,8 @@
  * Module dependencies.
  */
 require('dotenv').config( { silent : process.env.NODE_ENV === 'production' } );
+require('./lib/enforce-env-vars')();
+
 const app = require('../app');
 const debug = require('debug')('home-hack:server');
 const http = require('http');
