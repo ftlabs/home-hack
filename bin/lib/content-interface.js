@@ -14,7 +14,7 @@ function getContent(){
 function getFilteredContent(){
 	return getContent()
 		.then(data => {
-			data.sectionlist = data.sectionlist.filter(item => !item.indexOf('advert') > -1);
+			data.sectionlist = data.sectionlist.filter(item => item.indexOf('advert') === -1);
 			return data;
 		})
 		.catch(err => {
@@ -40,10 +40,14 @@ function getAListOfValidTopics(){
 
 function getArticlesForATopic(section){
 
+	debug(section);
+
 	return getFilteredContent()
 		.then(data => {
 
-			const selectedSection = data.sections[section]
+			const selectedSection = data.sections[section];
+
+			debug('selectedSection', selectedSection);
 
 			if(selectedSection !== undefined){
 				return selectedSection.itemdata;
@@ -61,6 +65,6 @@ function getArticlesForATopic(section){
 }
 
 module.exports = {
-	list : getAListOfValidTopics,
+	listTopics : getAListOfValidTopics,
 	getForTopic : getArticlesForATopic	
 };
