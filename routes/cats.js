@@ -12,12 +12,14 @@
 // limitations under the License.
 
 'use strict';
+const express = require('express');
+const router = express.Router();
 
 const { ApiAiApp } = require('actions-on-google');
-const functions = require('firebase-functions');
+// const functions = require('firebase-functions');
 const { sprintf } = require('sprintf-js');
 
-const strings = require('./strings');
+const strings = require('./assets/strings');
 
 process.env.DEBUG = 'actions-on-google:*';
 
@@ -265,13 +267,17 @@ actionMap.set(Actions.TELL_CAT_FACT, tellCatFact);
  * @param {Request} request An Express like Request object of the HTTP request
  * @param {Response} response An Express like Response object to send back data
  */
-const factsAboutGoogle = functions.https.onRequest((request, response) => {
+// const factsAboutGoogle = functions.https.onRequest((request, response) => {
+//   const app = new ApiAiApp({ request, response });
+//   console.log(`Request headers: ${JSON.stringify(request.headers)}`);
+//   console.log(`Request body: ${JSON.stringify(request.body)}`);
+//   app.handleRequest(actionMap);
+// });
+router.post('/' (request, response) => {
   const app = new ApiAiApp({ request, response });
   console.log(`Request headers: ${JSON.stringify(request.headers)}`);
   console.log(`Request body: ${JSON.stringify(request.body)}`);
   app.handleRequest(actionMap);
 });
 
-module.exports = {
-  factsAboutGoogle
-};
+module.exports = router;
