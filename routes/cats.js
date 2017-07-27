@@ -19,7 +19,7 @@ const { ApiAiApp } = require('actions-on-google');
 // const functions = require('firebase-functions');
 const { sprintf } = require('sprintf-js');
 
-const strings = require('./assets/strings');
+const strings = require('../assets/strings');
 
 process.env.DEBUG = 'actions-on-google:*';
 
