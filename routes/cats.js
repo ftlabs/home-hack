@@ -273,7 +273,7 @@ actionMap.set(Actions.TELL_CAT_FACT, tellCatFact);
 //   console.log(`Request body: ${JSON.stringify(request.body)}`);
 //   app.handleRequest(actionMap);
 // });
-router.post('/' (request, response) => {
+router.post('/', (request, response) => {
   const app = new ApiAiApp({ request, response });
   console.log(`Request headers: ${JSON.stringify(request.headers)}`);
   console.log(`Request body: ${JSON.stringify(request.body)}`);
