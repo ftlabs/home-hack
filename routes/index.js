@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const webApp = require('../bin/lib/content-interface');
+const sapi = require('../bin/lib/sapi');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,6 +27,20 @@ router.get('/topic/:topic', (req, res) => {
 		.then(data => {
 			res.json(data);
 		})
+		.catch(err => {
+			res.json({
+				status : 'err',
+				message : err
+			})
+		})
+	;
+
+});
+
+router.get('/search/:keyword', (req, res) => {
+
+	sapi.keyword(req.params.keyword)
+		.then(data => res.json(data))
 		.catch(err => {
 			res.json({
 				status : 'err',
