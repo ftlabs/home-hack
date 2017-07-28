@@ -285,14 +285,14 @@ const readArticle = app => {
   }
 
   const articles = sessions.get(app.body_.sessionId).originalHeadlines;
-  responseText += articles[parseInt(app.data['article-choice'])].title + '.';
+  responseText += articles[parseInt(app.data['article-choice'])].title + '.' + '<break time="30s" />';
 
   const article_body = articles[parseInt(app.data['article-choice'])].body;
   if(article_body !== undefined) {
     responseText += article_body;
   }
 
-  app.ask(responseText, strings.general.noInputs);
+  app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
 }
 
 
