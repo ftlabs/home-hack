@@ -268,6 +268,21 @@ if (!Object.values) {
 const readArticle = app => {
   debug('App:', app);
 
+  let responseText = 'You chose article number ';
+
+  switch(app.data['article-choice']) {
+    case '0':
+      responseText += 'one';
+    break;
+
+    case '1':
+      responseText += 'two';
+    break;
+
+    case '2':
+      responseText += 'three';
+    break;
+  }
   app.ask('Say wut?!', strings.general.noInputs);
 }
 
