@@ -1,10 +1,13 @@
-const debug = require('debug')('bin:lib:capi');
+const debug = require('debug')('bin:lib:sapi');
 const fetch = require('node-fetch');
 
-function getContentByUUID(uuid){
-
-	return fetch(`https://${process.env.CONTENT_API_HOSTNAME}/content/${uuid}`, {
-			method : 'GET',
+function searchForArticlesByKeyword(keyword){
+	
+	return fetch(`https://${process.env.SEARCH_API_HOSTNAME}/content/search/v1`, {
+			method : 'POST',
+			body :  JSON.stringify({
+				'queryString': keyword
+			}),
 			headers : {
 				'X-Api-Key' : process.env.CAPI_API_KEY,
 				'Content-Type' : 'application/json'
@@ -22,14 +25,10 @@ function getContentByUUID(uuid){
 			debug(data);
 			return data;
 		})
-		.catch(err => {
-			debug('Failed to getContentByUUID', err);
-			throw err;
-		})
 	;
 
 }
 
 module.exports = {
-	uuid : getContentByUUID
+	keyword : searchForArticlesByKeyword
 };

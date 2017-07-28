@@ -3,6 +3,13 @@ const fetch = require('node-fetch');
 
 function getContent(){
 	return fetch(process.env.WEB_APP_ENDPOINT)
+		.then(res => {
+			if(res.ok){
+				return res;
+			} else {
+				throw res;
+			}
+		})
 		.then(res => res.json())
 		.catch(err => {
 			debug('Failed to getContent', err);
