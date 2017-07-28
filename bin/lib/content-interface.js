@@ -71,7 +71,23 @@ function getArticlesForATopic(section){
 
 }
 
+function getArticlesThatAreOnTheHomePage(numberOfArticles = 5){
+
+	return getArticlesForATopic('home')
+		.then(articles => {
+			if(articles.length > numberOfArticles){
+				articles.length = numberOfArticles;
+			}
+
+			return articles;
+
+		})
+	;
+
+}
+
 module.exports = {
 	listTopics : getAListOfValidTopics,
-	getForTopic : getArticlesForATopic	
+	getForTopic : getArticlesForATopic,
+	getHeadlines : getArticlesThatAreOnTheHomePage
 };
