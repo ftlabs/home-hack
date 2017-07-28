@@ -297,7 +297,7 @@ const readArticle = app => {
 
 
 const welcomeWithHeadlines = app => {
-  content.getHeadlines(3).then(results => {
+  content.getHeadlinesAndBody(3).then(results => {
     let responseText = '<speak>Welcome to the F.T.<break time="0.5s" />Our top stories right now:';
 
     for(let i = 0; i < results.length; ++i) {
