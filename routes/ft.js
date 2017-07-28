@@ -305,7 +305,7 @@ const welcomeWithHeadlines = app => {
   content.getHeadlines(3).then(results => {
     let responseText = '<speak>Welcome to the F.T.<break time="1s" />Our top stories right now:';
 
-    for(let i in results) {
+    for(let i = 0; i < results.length; ++i) {
 
       responseText += '<break time="1s" />'+ (i === results.length - 1)?'and ':'' + results[i].title;
       
