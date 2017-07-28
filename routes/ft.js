@@ -21,6 +21,7 @@ const { sprintf } = require('sprintf-js');
 
 const strings = require('../assets/strings');
 const content = require('../bin/lib/content-interface');
+const sessions = require('../bin/lib/session-store');
 
 process.env.DEBUG = 'actions-on-google:*';
 
@@ -310,6 +311,10 @@ const welcomeWithHeadlines = app => {
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
       
     }
+
+    debug('SESSIONID: ', app._request.body.sessionId, app.body.sessionId);
+    
+    sessions.set(app._request.body.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
     const richResponse = app.buildRichResponse()
