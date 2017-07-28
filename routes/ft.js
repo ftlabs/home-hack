@@ -29,7 +29,8 @@ process.env.DEBUG = 'actions-on-google:*';
 
 //TODO: define custom actions here
 const Actions = {
-  FT_WELCOME: 'ft.welcome'
+  FT_WELCOME: 'ft.welcome',
+  FT_READ:    'ft.read', 
 };
 /** API.AI Parameters {@link https://api.ai/docs/actions-and-parameters#parameters} */
 //TODO: read on params?
@@ -264,45 +265,14 @@ if (!Object.values) {
 //   app.ask(richResponse, strings.general.noInputs);
 // };
 
-
-const welcomeWithHeadlines = app => {
-  // const data = initData(app);
-  // if (!data.facts.cats) {
-  //   data.facts.cats = strings.cats.facts.slice();
-  // }
-  // const catFacts = data.facts.cats;
-  // const fact = getRandomFact(catFacts);
-  // /** @type {boolean} */
-  // const screenOutput = app.hasSurfaceCapability(app.SurfaceCapabilities.SCREEN_OUTPUT);
-  // if (!fact) {
-  //   // Add facts context to outgoing context list
-  //   app.setContext(Contexts.FACTS, Lifespans.DEFAULT, {});
-  //   // Replace outgoing cat-facts context with lifespan = 0 to end it
-  //   app.setContext(Contexts.CATS, Lifespans.END, {});
-  //   if (!screenOutput) {
-  //     return app.ask(strings.transitions.cats.heardItAll, strings.general.noInputs);
-  //   }
-  //   const richResponse = app.buildRichResponse()
-  //     .addSimpleResponse(strings.transitions.cats.heardItAll, strings.general.noInputs)
-  //     .addSuggestions(strings.general.suggestions.confirmation);
-
-  //   return app.ask(richResponse);
-  // }
-  // const factPrefix = sprintf(strings.cats.factPrefix, getRandomValue(strings.cats.sounds));
-  // if (!screenOutput) {
-  //   // <speak></speak> is needed here since factPrefix is a SSML string and contains audio
-  //   return app.ask(`<speak>${concat([factPrefix, fact, strings.general.nextFact])}</speak>`, strings.general.noInputs);
-  // }
-  // const image = getRandomValue(strings.cats.images);
-  // const [url, name] = image;
-  // const card = app.buildBasicCard(fact)
-  //   .setImage(url, name)
-  //   .addButton(strings.general.linkOut, strings.cats.link);
-
+const readArticle = app => {
   debug('App:', app);
 
-  const HELLO = 'Hi Sean';
+  app.ask('Say wut?!', strings.general.noInputs);
+}
 
+
+const welcomeWithHeadlines = app => {
   content.getHeadlines(3).then(results => {
     let responseText = '<speak>Welcome to the F.T.<break time="0.5s" />Our top stories right now:';
 
@@ -310,13 +280,12 @@ const welcomeWithHeadlines = app => {
 
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
       
-    }    
+    }
 
-    // app.body_.sessionId
-    debug('SESSIONID : >>>', app.body_.sessionId);
     sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
+
     const richResponse = app.buildRichResponse()
     .addSimpleResponse(responseText);
 
@@ -330,6 +299,7 @@ const actionMap = new Map();
 // actionMap.set(Actions.TELL_FACT, tellFact);
 // actionMap.set(Actions.TELL_CAT_FACT, tellCatFact);
 actionMap.set(Actions.FT_WELCOME, welcomeWithHeadlines);
+actionMap.set(Actions.FT_READ, readArticle);
 
 /**
  * The entry point to handle a http request
