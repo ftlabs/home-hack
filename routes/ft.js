@@ -312,9 +312,12 @@ const welcomeWithHeadlines = app => {
       
     }
 
-    debug('SESSIONID: ', app._request.body.sessionId, app.body.sessionId);
+    debug('BODY1: ', app.body);
+    debug('BODY2: ', app.body_);
     
-    sessions.set(app._request.body.sessionId, { originalHeadlines : results });
+
+    // app.body_.sessionId
+    // sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
     const richResponse = app.buildRichResponse()
