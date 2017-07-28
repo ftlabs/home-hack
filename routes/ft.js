@@ -20,6 +20,7 @@ const { ApiAiApp } = require('actions-on-google');
 const { sprintf } = require('sprintf-js');
 
 const strings = require('../assets/strings');
+const content = require('../bin/lib/content-interface');
 
 process.env.DEBUG = 'actions-on-google:*';
 
@@ -301,10 +302,18 @@ const welcomeWithHeadlines = app => {
 
   const HELLO = 'Hi Sean';
 
-  const richResponse = app.buildRichResponse()
-    .addSimpleResponse(`<speak>${HELLO}</speak>`);
+  content.getHeadlines(3).then(results => {
+    let responseText = '';
+    
+    for(let i in results) {
+      responseText += results[i].title;
+      
+    }
+    const richResponse = app.buildRichResponse()
+    .addSimpleResponse(`<speak>${responseText}</speak>`);
 
-  app.ask(richResponse, strings.general.noInputs);
+    app.ask(richResponse, strings.general.noInputs);
+  }) 
 };
 
 /** @type {Map<string, function(ApiAiApp): void>} */
