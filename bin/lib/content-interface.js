@@ -1,6 +1,15 @@
 const debug = require('debug')('bin:lib:content-interface');
 const fetch = require('node-fetch');
 
+function limitListSize(maxNumber, list){
+	
+	if(list.length > maxNumber){
+		list.length = maxNumber;
+	}
+
+	return list;
+}
+
 function getContent(){
 	return fetch(process.env.WEB_APP_ENDPOINT)
 		.then(res => {
@@ -74,20 +83,21 @@ function getArticlesForATopic(section){
 function getArticlesThatAreOnTheHomePage(numberOfArticles = 5){
 
 	return getArticlesForATopic('home')
-		.then(articles => {
-			if(articles.length > numberOfArticles){
-				articles.length = numberOfArticles;
-			}
-
-			return articles;
-
-		})
+		.then( articles => limitListSize(articles) )
 	;
 
+}
+
+function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5){
+	return getArticlesThatAreOnTheHomePage(100)
+		.then( articles => articles.filter( article => { return article.body !== undefined } ) )
+		.then( filteredArticles => limitListSize(filteredArticles) )
+	;
 }
 
 module.exports = {
 	listTopics : getAListOfValidTopics,
 	getForTopic : getArticlesForATopic,
-	getHeadlines : getArticlesThatAreOnTheHomePage
+	getHeadlines : getArticlesThatAreOnTheHomePage,
+	getHeadlinesAndBody : onlyGetArticlesThatHaveAHeadlineAndBody 
 };
