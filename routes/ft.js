@@ -310,14 +310,11 @@ const welcomeWithHeadlines = app => {
 
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
       
-    }
-
-    debug('BODY1: ', app.body);
-    debug('BODY2: ', app.body_);
-    
+    }    
 
     // app.body_.sessionId
-    // sessions.set(app.body_.sessionId, { originalHeadlines : results });
+    debug('SESSIONID', app.body_.sessionId);
+    sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
     const richResponse = app.buildRichResponse()
