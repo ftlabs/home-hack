@@ -16,4 +16,4 @@ const REQUIRED_ENV_VARS = [
 		}
 	});
 
-})()
+}());
