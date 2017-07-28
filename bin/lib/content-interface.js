@@ -83,7 +83,7 @@ function getArticlesForATopic(section){
 function getArticlesThatAreOnTheHomePage(numberOfArticles = 5){
 
 	return getArticlesForATopic('home')
-		.then( articles => limitListSize(articles) )
+		.then( articles => limitListSize(numberOfArticles, articles) )
 	;
 
 }
