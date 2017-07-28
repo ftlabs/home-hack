@@ -297,9 +297,9 @@ const welcomeWithHeadlines = app => {
   //   .setImage(url, name)
   //   .addButton(strings.general.linkOut, strings.cats.link);
 
-  debug(`App: ${app}`);
+  debug('App:', app);
 
-  const HELLO = 'Hi Lily';
+  const HELLO = 'Hi Sean';
 
   const richResponse = app.buildRichResponse()
     .addSimpleResponse(`<speak>${HELLO}</speak>`);
