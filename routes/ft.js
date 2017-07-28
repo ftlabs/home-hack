@@ -307,7 +307,7 @@ const welcomeWithHeadlines = app => {
 
     for(let i = 0; i < results.length; ++i) {
 
-      responseText += '<break time="1s" />'+ (i === results.length - 1)?'and ':'' + results[i].title;
+      responseText += '<break time="1s" />'+ ((i === results.length - 1)?'and ':'') + results[i].title;
       
     }
 
