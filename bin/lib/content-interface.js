@@ -91,7 +91,7 @@ function getArticlesThatAreOnTheHomePage(numberOfArticles = 5){
 function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5){
 	return getArticlesThatAreOnTheHomePage(100)
 		.then( articles => articles.filter( article => { return article.body !== undefined } ) )
-		.then( filteredArticles => limitListSize(filteredArticles) )
+		.then( filteredArticles => limitListSize(numberOfArticles, filteredArticles) )
 	;
 }
 
