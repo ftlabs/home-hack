@@ -266,7 +266,7 @@ if (!Object.values) {
 // };
 
 const readArticle = app => {
-  debug('App:', app);
+  debug('App:', app.data);
 
   let responseText = 'You chose article number ';
 
@@ -283,7 +283,8 @@ const readArticle = app => {
       responseText += 'three';
     break;
   }
-  app.ask('Say wut?!', strings.general.noInputs);
+
+  app.ask(responseText, strings.general.noInputs);
 }
 
 
