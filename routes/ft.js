@@ -272,16 +272,24 @@ const readArticle = app => {
 
   switch(app.data['article-choice']) {
     case '0':
-      responseText += 'one';
+      responseText += 'one,';
     break;
 
     case '1':
-      responseText += 'two';
+      responseText += 'two,';
     break;
 
     case '2':
-      responseText += 'three';
+      responseText += 'three, ';
     break;
+  }
+
+  const articles = sessions.get(app.body_.sessionId).originalHeadlines;
+  responseText += articles[parseInt(app.data['article-choice'])].title + '.';
+
+  const article_body = articles[parseInt(app.data['article-choice'])].body;
+  if(article_body !== undefined) {
+    responseText += article_body;
   }
 
   app.ask(responseText, strings.general.noInputs);
