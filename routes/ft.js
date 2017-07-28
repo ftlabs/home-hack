@@ -285,7 +285,7 @@ const readArticle = app => {
   }
 
   const articles = sessions.get(app.body_.sessionId).originalHeadlines;
-  responseText += articles[parseInt(app.data['article-choice'])].title + '.' + '<break time="70s" />';
+  responseText += articles[parseInt(app.data['article-choice'])].title + '.' + '<break time="1s" />';
 
   const article_body = articles[parseInt(app.data['article-choice'])].body;
   if(article_body !== undefined) {
