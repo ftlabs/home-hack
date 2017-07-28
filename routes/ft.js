@@ -303,14 +303,16 @@ const welcomeWithHeadlines = app => {
   const HELLO = 'Hi Sean';
 
   content.getHeadlines(3).then(results => {
-    let responseText = '';
-    
+    let responseText = '<speak>Welcome to the F.T.<break time="1s" />Our top stories right now:';
+
     for(let i in results) {
-      responseText += results[i].title;
+      responseText += '<break time="1s" />' + results[i].title;
       
     }
+
+    responseText += '</speak>';
     const richResponse = app.buildRichResponse()
-    .addSimpleResponse(`<speak>${responseText}</speak>`);
+    .addSimpleResponse(responseText);
 
     app.ask(richResponse, strings.general.noInputs);
   }) 
