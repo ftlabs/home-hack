@@ -313,7 +313,7 @@ const welcomeWithHeadlines = app => {
     }    
 
     // app.body_.sessionId
-    debug('SESSIONID', app.body_.sessionId);
+    debug('SESSIONID : >>>', app.body_.sessionId);
     sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
