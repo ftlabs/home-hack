@@ -284,7 +284,7 @@ const getTopic = app => {
 
     responseText += '</speak>';
 
-    app.ask(responseText}, strings.general.noInputs);
+    app.ask(responseText, strings.general.noInputs);
   });
 
 }
