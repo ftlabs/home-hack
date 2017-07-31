@@ -268,15 +268,28 @@ if (!Object.values) {
 
 const getTopic = app => {
   const topic = app.data['app-topics'];
+  const userChoice = app.data['app-topics.original'];
 
   content.getHeadlinesAndBody(3, topic)
   .then(results => {
     console.log('topics', results);
 
     let responseText = 'You chose the topic, ' + topic;
-    //TODO: get three headlines on the topic
-    app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
-  })
+
+    let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
+
+    for(let i = 0; i < results.length; ++i) {
+
+      responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
+      
+    }
+
+    sessions.set(app.body_.sessionId, { originalHeadlines : results });
+
+    responseText += '</speak>';
+
+    app.ask(responseText}, strings.general.noInputs);
+  });
 
 }
 
