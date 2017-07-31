@@ -30,7 +30,8 @@ process.env.DEBUG = 'actions-on-google:*';
 //TODO: define custom actions here
 const Actions = {
   FT_WELCOME: 'ft.welcome',
-  FT_READ:    'ft.read', 
+  FT_READ:    'ft.read',
+  FT_TOPIC:   'ft.other.topic' 
 };
 /** API.AI Parameters {@link https://api.ai/docs/actions-and-parameters#parameters} */
 //TODO: read on params?
@@ -265,6 +266,11 @@ if (!Object.values) {
 //   app.ask(richResponse, strings.general.noInputs);
 // };
 
+const getTopic = app => {
+  let responseText = 'You chose the topic, ' + app.data['app-topics'];
+  app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
+}
+
 const readArticle = app => {
   debug('App:', app.data);
 
@@ -324,6 +330,7 @@ const actionMap = new Map();
 // actionMap.set(Actions.TELL_CAT_FACT, tellCatFact);
 actionMap.set(Actions.FT_WELCOME, welcomeWithHeadlines);
 actionMap.set(Actions.FT_READ, readArticle);
+actionMap.set(Actions.FT_TOPIC, getTopic);
 
 /**
  * The entry point to handle a http request
