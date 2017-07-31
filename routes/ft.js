@@ -291,8 +291,8 @@ const getTopic = app => {
 
 const searchTopic = app => {
   // console.log('SEARCH::: ', app.data);
-  let userChoice = app.data.result.resolvedQuery;
-  console.log('SEARCH::', userChoice);
+  // let userChoice = app.data.result.resolvedQuery;
+  console.log('SEARCH::', app.data);
 
   // const topic = app.data['app-topics'];
   // const userChoice = app.data['app-topics.original'];
@@ -317,8 +317,6 @@ const searchTopic = app => {
 }
 
 const readArticle = app => {
-  debug('App:', app.data);
-
   let responseText = 'You chose article number ';
 
   switch(app.data['article-choice']) {
