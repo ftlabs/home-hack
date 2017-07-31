@@ -321,9 +321,6 @@ const welcomeWithHeadlines = app => {
 
     app.ask(richResponse, strings.general.noInputs);
   })
-  .catch(err => {
-    console.log(err);
-  })
 };
 
 /** @type {Map<string, function(ApiAiApp): void>} */
