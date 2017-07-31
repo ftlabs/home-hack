@@ -267,8 +267,16 @@ if (!Object.values) {
 // };
 
 const getTopic = app => {
-  let responseText = 'You chose the topic, ' + app.data['app-topics'];
-  app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
+  const topic = app.data['app-topics'];
+
+  content.getForTopic(topic)
+  .then(results => {
+    console.log('topics', results);
+    
+    let responseText = 'You chose the topic, ' + topic;
+    app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
+  })
+
 }
 
 const readArticle = app => {
