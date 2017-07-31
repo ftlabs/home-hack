@@ -21,7 +21,7 @@ const { sprintf } = require('sprintf-js');
 
 const strings = require('../assets/strings');
 const content = require('../bin/lib/content-interface');
-const search = require('../bin/lib/sapi3');
+const search = require('../bin/lib/sapi');
 const sessions = require('../bin/lib/session-store');
 
 process.env.DEBUG = 'actions-on-google:*';
