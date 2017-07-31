@@ -290,7 +290,10 @@ const getTopic = app => {
 }
 
 const searchTopic = app => {
-  console.log(app.data);
+  // console.log('SEARCH::: ', app.data);
+  let userChoice = app.data.inputs.rawInput.query;
+  console.log('SEARCH::', userChoice);
+
   // const topic = app.data['app-topics'];
   // const userChoice = app.data['app-topics.original'];
 
