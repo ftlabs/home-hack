@@ -21,6 +21,7 @@ const { sprintf } = require('sprintf-js');
 
 const strings = require('../assets/strings');
 const content = require('../bin/lib/content-interface');
+const search = require('../bin/lib/sapi3');
 const sessions = require('../bin/lib/session-store');
 
 process.env.DEBUG = 'actions-on-google:*';
@@ -267,6 +268,7 @@ if (!Object.values) {
 // };
 
 const getTopic = app => {
+  console.log(app.data);
   const topic = app.data['app-topics'];
   const userChoice = app.data['app-topics.original'];
 
@@ -275,9 +277,7 @@ const getTopic = app => {
     let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
 
     for(let i = 0; i < results.length; ++i) {
-
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
-      
     }
 
     sessions.set(app.body_.sessionId, { originalHeadlines : results });
@@ -358,8 +358,8 @@ actionMap.set(Actions.FT_TOPIC, getTopic);
 
 router.post('/', (request, response) => {
   const app = new ApiAiApp({ request, response });
-  console.log(`Request headers: ${JSON.stringify(request.headers)}`);
-  console.log(`Request body: ${JSON.stringify(request.body)}`);
+  // console.log(`Request headers: ${JSON.stringify(request.headers)}`);
+  // console.log(`Request body: ${JSON.stringify(request.body)}`);
   app.handleRequest(actionMap);
 });
 
