@@ -80,16 +80,8 @@ function getArticlesForATopic(section){
 
 }
 
-function getArticlesThatAreOnTheHomePage(numberOfArticles = 5){
-
-	return getArticlesForATopic('home')
-		.then( articles => limitListSize(numberOfArticles, articles) )
-	;
-
-}
-
-function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5){
-	return getArticlesThatAreOnTheHomePage(100)
+function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5, topic = 'home'){
+	return getArticlesForATopic(topic)
 		.then( articles => articles.filter( article => { return article.body !== undefined } ) )
 		.then( filteredArticles => limitListSize(numberOfArticles, filteredArticles) )
 	;
@@ -97,7 +89,5 @@ function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5){
 
 module.exports = {
 	listTopics : getAListOfValidTopics,
-	getForTopic : getArticlesForATopic,
-	getHeadlines : getArticlesThatAreOnTheHomePage,
 	getHeadlinesAndBody : onlyGetArticlesThatHaveAHeadlineAndBody 
 };

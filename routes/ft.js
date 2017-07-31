@@ -269,11 +269,12 @@ if (!Object.values) {
 const getTopic = app => {
   const topic = app.data['app-topics'];
 
-  content.getForTopic(topic)
+  content.getHeadlinesAndBody(3, topic)
   .then(results => {
     console.log('topics', results);
-    
+
     let responseText = 'You chose the topic, ' + topic;
+    //TODO: get three headlines on the topic
     app.ask(`<speak>${responseText}</speak>`, strings.general.noInputs);
   })
 
