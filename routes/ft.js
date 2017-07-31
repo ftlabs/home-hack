@@ -272,10 +272,6 @@ const getTopic = app => {
 
   content.getHeadlinesAndBody(3, topic)
   .then(results => {
-    console.log('topics', results);
-
-    let responseText = 'You chose the topic, ' + topic;
-
     let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
 
     for(let i = 0; i < results.length; ++i) {
