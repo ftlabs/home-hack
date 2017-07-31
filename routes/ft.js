@@ -32,7 +32,8 @@ process.env.DEBUG = 'actions-on-google:*';
 const Actions = {
   FT_WELCOME: 'ft.welcome',
   FT_READ:    'ft.read',
-  FT_TOPIC:   'ft.other.topic' 
+  FT_TOPIC:   'ft.other.topic',
+  FT_SEARCH:  'ft.other.fallback'  
 };
 /** API.AI Parameters {@link https://api.ai/docs/actions-and-parameters#parameters} */
 //TODO: read on params?
@@ -286,6 +287,29 @@ const getTopic = app => {
 
     app.ask(responseText, strings.general.noInputs);
   });
+}
+
+const searchTopic = app => {
+  console.log(app.data);
+  // const topic = app.data['app-topics'];
+  // const userChoice = app.data['app-topics.original'];
+
+  // content.getHeadlinesAndBody(3, topic)
+  // .then(results => {
+  //   let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
+
+  //   for(let i = 0; i < results.length; ++i) {
+  //     responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
+  //   }
+
+  //   sessions.set(app.body_.sessionId, { originalHeadlines : results });
+
+  //   responseText += '</speak>';
+  // });
+
+
+  let responseText = "placeholder fallback";
+  app.ask(responseText, strings.general.noInputs);
 
 }
 
@@ -349,6 +373,7 @@ const actionMap = new Map();
 actionMap.set(Actions.FT_WELCOME, welcomeWithHeadlines);
 actionMap.set(Actions.FT_READ, readArticle);
 actionMap.set(Actions.FT_TOPIC, getTopic);
+actionMap.set(Actions.FT_SEARCH, searchTopic);
 
 /**
  * The entry point to handle a http request
