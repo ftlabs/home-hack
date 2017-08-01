@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 function searchForArticlesByKeyword(keyword){
 
 	const queryParams = {
-		"queryString": "",
+		"queryString": keyword,
 		"queryContext" : {          
 		    "curations" : [ "ARTICLES", "BLOGS" ]
 		},      
@@ -19,9 +19,6 @@ function searchForArticlesByKeyword(keyword){
 	
 	return fetch(`https://${process.env.SEARCH_API_HOSTNAME}/content/search/v1`, {
 			method : 'POST',
-			body :  JSON.stringify({
-				'queryString': keyword
-			}),
 			headers : {
 				'X-Api-Key' : process.env.CAPI_API_KEY,
 				'Content-Type' : 'application/json',
