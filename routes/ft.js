@@ -293,7 +293,7 @@ const searchTopic = req => {
   // console.log('SEARCH::: ', app.data);
   // let userChoice = app.data.result.resolvedQuery;
   console.log('SEARCH::',req);
-  console.log('SEARCH2::', req.body);
+  console.log('SEARCH2::', req.body_);
 
   // const topic = app.data['app-topics'];
   // const userChoice = app.data['app-topics.original'];
