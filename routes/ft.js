@@ -293,9 +293,11 @@ const searchTopic = app => {
   const userQuery = app.body_.result.resolvedQuery;
   let userChoice = (userQuery.split('about ').length > 1)?userQuery.split('about ')[1]:userQuery;
 
-  let responseText = `Your query ${userChoice}`;
-  app.ask(responseText, strings.general.noInputs);
-
+  search.keyword(userChoice).then(result => {
+    console.log(result);
+    let responseText = `Your query ${userChoice}`;
+    app.ask(responseText, strings.general.noInputs);
+  });
 }
 
 const readArticle = app => {
