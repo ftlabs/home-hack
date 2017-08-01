@@ -11,7 +11,7 @@ function searchForArticlesByKeyword(keyword){
 		"resultContext" : {          
 		    "maxResults" : 3,          
 		    "offset" : "0",
-		    "aspects" : [ "title", "location", "summary", "lifecycle", "metadata"],
+		    "aspects" : [ "title", "location", "editorial", "master"],
 		    "sortOrder": "DESC",          
 		    "sortField": "lastPublishDateTime"
 		}
@@ -35,7 +35,7 @@ function searchForArticlesByKeyword(keyword){
 		.then(res => res.json())
 		.then(data => {
 			debug(data);
-			return JSON.stringify(data);
+			return JSON.stringify(data.results[0].results);
 		})
 	;
 
