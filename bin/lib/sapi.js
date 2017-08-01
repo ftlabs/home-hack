@@ -38,6 +38,9 @@ function searchForArticlesByKeyword(keyword){
 			debug(JSON.stringify(data.results[0].results));
 			return data.results[0].results;
 		})
+		.catch(err => {
+			debug('ERROR::', err)
+		})
 	;
 
 }
