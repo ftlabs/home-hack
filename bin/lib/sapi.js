@@ -9,9 +9,9 @@ function searchForArticlesByKeyword(keyword){
 		    "curations" : [ "ARTICLES", "BLOGS" ]
 		},      
 		"resultContext" : {          
-		    "maxResults" : 3,          
+		    "maxResults" : "3",          
 		    "offset" : "0",
-		    "aspects" : [ "title", "location", "editorial", "master"],
+		    "aspects" : [ "title", "location"],
 		    "sortOrder": "DESC",          
 		    "sortField": "lastPublishDateTime"
 		}

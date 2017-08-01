@@ -281,7 +281,7 @@ const getTopic = app => {
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
     }
 
-    sessions.set(app.body_.sessionId, { originalHeadlines : results });
+    // sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
 
@@ -294,8 +294,16 @@ const searchTopic = app => {
   let userChoice = (userQuery.split('about ').length > 1)?userQuery.split('about ')[1]:userQuery;
 
   search.keyword(userChoice).then(result => {
-    console.log(result);
-    let responseText = `Your query ${userChoice}`;
+    let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
+
+    for(let i = 0; i < results.length; ++i) {
+      responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title.title;
+    }
+
+    sessions.set(app.body_.sessionId, { originalHeadlines : results });
+
+    responseText += '</speak>';
+
     app.ask(responseText, strings.general.noInputs);
   });
 }
