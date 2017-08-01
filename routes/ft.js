@@ -300,6 +300,8 @@ const searchTopic = app => {
       responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title.title;
     }
 
+    responseText += "You can read those articles on ft.com, or would you like to search for something else?";
+
     // sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
     responseText += '</speak>';
@@ -349,7 +351,7 @@ const welcomeWithHeadlines = app => {
 
     sessions.set(app.body_.sessionId, { originalHeadlines : results });
 
-    responseText += '</speak>';
+    responseText += 'Would you like me to read one of them or hear about something else?</speak>';
 
     const richResponse = app.buildRichResponse()
     .addSimpleResponse(responseText);
