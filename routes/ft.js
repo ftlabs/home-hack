@@ -289,11 +289,11 @@ const getTopic = app => {
   });
 }
 
-const searchTopic = req => {
+const searchTopic = app => {
   // console.log('SEARCH::: ', app.data);
   // let userChoice = app.data.result.resolvedQuery;
-  console.log('SEARCH::',req);
-  console.log('SEARCH2::', req.body_);
+  // console.log('SEARCH::',req);
+  console.log('SEARCH2::', app.body_.result.resolvedQuery);
 
   // const topic = app.data['app-topics'];
   // const userChoice = app.data['app-topics.original'];
