@@ -2,6 +2,20 @@ const debug = require('debug')('bin:lib:sapi');
 const fetch = require('node-fetch');
 
 function searchForArticlesByKeyword(keyword){
+
+	const queryParams = {
+		"queryString": "",
+		"queryContext" : {          
+		    "curations" : [ "ARTICLES", "BLOGS" ]
+		},      
+		"resultContext" : {          
+		    "maxResults" : 3,          
+		    "offset" : "0",
+		    "aspects" : [ "title", "location", "summary", "lifecycle", "metadata"],
+		    "sortOrder": "DESC",          
+		    "sortField": "lastPublishDateTime"
+		}
+	};
 	
 	return fetch(`https://${process.env.SEARCH_API_HOSTNAME}/content/search/v1`, {
 			method : 'POST',
@@ -10,7 +24,8 @@ function searchForArticlesByKeyword(keyword){
 			}),
 			headers : {
 				'X-Api-Key' : process.env.CAPI_API_KEY,
-				'Content-Type' : 'application/json'
+				'Content-Type' : 'application/json',
+				'Content-Length': JSON.stringify(queryParams).length
 			}
 		})
 		.then(res => {
