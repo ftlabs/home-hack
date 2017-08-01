@@ -82,6 +82,7 @@ function getArticlesForATopic(section){
 
 function onlyGetArticlesThatHaveAHeadlineAndBody(numberOfArticles = 5, topic = 'home'){
 	return getArticlesForATopic(topic)
+
 		.then( articles => articles.filter( article => { return article.body !== undefined } ) )
 		.then( filteredArticles => limitListSize(numberOfArticles, filteredArticles) )
 	;
