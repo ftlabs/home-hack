@@ -34,7 +34,7 @@ function searchForArticlesByKeyword(keyword){
 		})
 		.then(res => res.json())
 		.then(data => {
-			debug(data.results);
+			debug(JSON.stringify(data.results[0]));
 			return JSON.stringify(data.results[0]);
 		})
 	;
