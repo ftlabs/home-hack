@@ -290,29 +290,10 @@ const getTopic = app => {
 }
 
 const searchTopic = app => {
-  // console.log('SEARCH::: ', app.data);
-  // let userChoice = app.data.result.resolvedQuery;
-  // console.log('SEARCH::',req);
-  console.log('SEARCH2::', app.body_.result.resolvedQuery);
+  const userQuery = app.body_.result.resolvedQuery;
+  let userChoice = (userQuery.split('about ').length > 1):userQuery.split('about ')[1]:userQuery;
 
-  // const topic = app.data['app-topics'];
-  // const userChoice = app.data['app-topics.original'];
-
-  // content.getHeadlinesAndBody(3, topic)
-  // .then(results => {
-  //   let responseText = '<speak>Our top stories on ' + userChoice + ' are:';
-
-  //   for(let i = 0; i < results.length; ++i) {
-  //     responseText += '<break time="0.8s" />'+ ((i === results.length - 1)?'and, ':'') + results[i].title;
-  //   }
-
-  //   sessions.set(app.body_.sessionId, { originalHeadlines : results });
-
-  //   responseText += '</speak>';
-  // });
-
-
-  let responseText = "placeholder fallback";
+  let responseText = `Your query ${userChoice}`;
   app.ask(responseText, strings.general.noInputs);
 
 }
