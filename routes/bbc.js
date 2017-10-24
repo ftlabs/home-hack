@@ -32,7 +32,7 @@ const askQuiz = google => {
 	let options = '';
 	if(question.hasOptions) {
 		for(let i = 0; i < question.answers.length; ++i) {
-			options += `${question.answers.option}) ${question.answers.value}. `;
+			options += `${question.answers[i].option}) ${question.answers[i].value}. `;
 		}
 	}
 
