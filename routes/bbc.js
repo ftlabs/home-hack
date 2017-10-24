@@ -26,7 +26,7 @@ const Context = {
 }
 
 const playWelcome = google => {
-	google.setContext(Context.ASK_LEAVE_COMMENT, 10);
+	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
 	google.ask(`Hello Lily, you've read 3 stories today. The last article you read is ${data[currentArticle].title}. Would you like to leave a comment on it?`);
 };
 
@@ -43,7 +43,7 @@ const askQuiz = google => {
 		}
 	}
 
-	google.setContext(Context.CHECK_QUIZ_ANWSER, 10);
+	google.setContext(Context.CHECK_QUIZ_ANWSER, 1);
 	google.ask(`Great, to make sure you read the story, answer one question about the article correctly. ${question.question} ${options}`);
 };
 
@@ -54,7 +54,7 @@ const matchAnswer = google => {
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
 
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
-		google.setContext(Context.CAN_LEAVE_COMMENT, 10);
+		google.setContext(Context.CAN_LEAVE_COMMENT, 1);
 		reply = `You gave the correct answer. Please record your comment.`
 	}
 	google.ask(reply);
