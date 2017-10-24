@@ -31,12 +31,13 @@ const playWelcome = google => {
 const askQuiz = google => {
 	const question = data[currentArticle].fact_check[0];
 	let options = '';
-	if(question.hasOptions) {
-		for(let i = 0; i < question.answers.length; ++i) {
+	for(let i = 0; i < question.answers.length; ++i) {
+		if(question.hasOptions) {
 			options += `${question.answers[i].option}) ${question.answers[i].value}. `;
-			if(question.answers[i].isCorrect) {
-				expectedAnswer = question.answers[i];
-			}
+		}
+
+		if(question.answers[i].isCorrect) {
+			expectedAnswer = question.answers[i];
 		}
 	}
 
@@ -48,7 +49,6 @@ const matchAnswer = google => {
 	const userAnswer = google.getRawInput().toLowerCase();
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
 	console.log('ANSWER::', expectedAnswer);
-	console.log('USER::', userAnswer);
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
 		reply = `You gave the correct answer. Please record your comment.`
 	}

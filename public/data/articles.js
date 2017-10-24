@@ -35,12 +35,12 @@ const articles = [
 				'hasOptions':false,
 				'answers': [
 					{
-						'option': '.',
+						'option': '',
 						'value': 'True',
 						'isCorrect': true
 					},
 					{
-						'option': '.',
+						'option': '',
 						'value': 'False',
 						'isCorrect': false
 					}
@@ -57,12 +57,12 @@ const articles = [
 				'hasOptions': false,
 				'answers': [
 					{
-						'option': '.',
+						'option': '',
 						'value': 'True',
 						'isCorrect': true
 					},
 					{
-						'option': '.',
+						'option': '',
 						'value': 'False',
 						'isCorrect': false
 					}
