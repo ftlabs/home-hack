@@ -28,7 +28,7 @@ const articles = [
 	},
 	{
 		'uuid': '8e8237ca-b7f6-11e7-8c12-5661783e5589',
-		'title': 'Allies of Juncker and May clash over an account of private dinner',
+		'title': 'The voice recognition revolution is a long time coming',
 		'fact_check': [
 			{
 				'question': 'True or False? Columnist Izabella Kaminska thinks voice interface technology could be on the “fast-track to the Museum of Failure.',
