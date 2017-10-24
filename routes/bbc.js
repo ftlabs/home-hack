@@ -52,11 +52,16 @@ const matchAnswer = google => {
 	console.log('USER ANSWER::', userAnswer);
 	console.log('matchAnswer:::', google);
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
+	let setContext = Context.CHECK_QUIZ_ANWSER;
 
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
-		google.setContext(Context.CAN_LEAVE_COMMENT, 1);
+		setContext = Context.CAN_LEAVE_COMMENT;
+		
 		reply = `You gave the correct answer. Please record your comment.`
 	}
+
+	console.log('SETCONTEXT:::', setContext);
+	google.setContext(setContext, 1);
 	google.ask(reply);
 };
 
