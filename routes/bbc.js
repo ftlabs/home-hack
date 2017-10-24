@@ -2,6 +2,9 @@
 const debug = require('debug')('routes:bcc');
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+
+const data = require('../public/data/articles.js');
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -12,6 +15,7 @@ const Actions = {
 };
 
 const playWelcome = google => {
+	console.log('DATA::', data);
 	google.ask(`Hello Lily, you've read 3 stories today.`);
 };
 
