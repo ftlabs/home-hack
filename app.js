@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/bbc', require('./routes/bbc'));
 app.use(basicAuth);
 
 app.use('/', require('./routes/index'));
