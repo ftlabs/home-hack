@@ -14,6 +14,7 @@ process.env.DEBUG = 'actions-on-google:*';
 const Actions = {
   WELCOME: 'BBC.welcome',
   ASK: 'BBC.comment', 
+  ANSWER: 'BBC.answer'
 };
 
 const Context = {
@@ -22,7 +23,7 @@ const Context = {
 }
 
 const playWelcome = google => {
-	google.setContext(Comment.ASK_LEAVE_COMMENT, 10);
+	// google.setContext(Comment.ASK_LEAVE_COMMENT, 10);
 	google.ask(`Hello Lily, you've read 3 stories today. The last article you read is ${data[currentArticle].title}. Would you like to leave a comment on it?`);
 };
 
