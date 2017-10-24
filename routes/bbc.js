@@ -45,9 +45,13 @@ const askQuiz = google => {
 };
 
 const matchAnswer = google => {
-	console.log('ANSWER:::', expectedAnswer);
-	console.log('INPUT:::', google.getRawInput());
-	google.ask(`You gave the correct answer.`);
+	const userAnswer = google.getRawInput().toLowerCase();
+	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
+
+	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
+		reply = `You gave the correct answer. Please record your comment.`
+	}
+	google.ask(reply);
 };
 
 const actionMap = new Map();
