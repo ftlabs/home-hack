@@ -6,6 +6,7 @@ const path = require('path');
 
 const data = require('../public/data/articles.js');
 let currentArticle = 0;
+let expectedAnswer;
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -19,7 +20,7 @@ const Actions = {
 
 const Context = {
 	ASK_LEAVE_COMMENT: 'leave_comment',
-	CHECK_QUIZ_ANWSER: 'check_quiz_answer'
+	CHECK_QUIZ_ANWSER: 'answer_quiz'
 }
 
 const playWelcome = google => {
@@ -33,13 +34,18 @@ const askQuiz = google => {
 	if(question.hasOptions) {
 		for(let i = 0; i < question.answers.length; ++i) {
 			options += `${question.answers[i].option}) ${question.answers[i].value}. `;
+			if(question.answers[i].isCorrect) {
+				expectedAnswer = question.answers[i];
+			}
 		}
 	}
 
+	google.setContext(Context.CHECK_QUIZ_ANWSER, 10);
 	google.ask(`Great, to make sure you read the story, answer one question about the article correctly. ${question.question} ${options}`);
 };
 
 const matchAnswer = google => {
+	console.log('ANSWER:::', expectedAnswer);
 	google.ask(`You gave the correct answer.`);
 };
 
