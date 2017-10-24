@@ -49,19 +49,14 @@ const askQuiz = google => {
 
 const matchAnswer = google => {
 	const userAnswer = google.getRawInput().toLowerCase();
-	console.log('USER ANSWER::', userAnswer);
-	console.log('matchAnswer:::', google);
+
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
 	let setContext = Context.CHECK_QUIZ_ANWSER;
 
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
-		setContext = Context.CAN_LEAVE_COMMENT;
-		
 		reply = `You gave the correct answer. Please record your comment.`
 	}
 
-	console.log('SETCONTEXT:::', setContext);
-	google.setContext(setContext, 1);
 	google.ask(reply);
 };
 
@@ -69,9 +64,16 @@ const recordComment = google => {
 	const comment = google.getRawInput();
 
 	console.log('USER COMMENT::', comment);
+	analyseUserComment(comment, google);
 
-	google.ask(`Please wait while we analyse your comment.`);
+	google.tell(`Please wait while we analyse your comment.`);
 };
+
+function analyseUserComment(comment, google) {
+	setTimeout(() => {
+		google.ask(`Are you sure you want to publish ${comment}?`);
+	}, 1000);
+}
 
 const actionMap = new Map();
 actionMap.set(Actions.WELCOME, playWelcome);
