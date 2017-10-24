@@ -4,7 +4,7 @@ const articles = [
 		'title': 'Allies of Juncker and May clash over an account of private dinner',
 		'fact_check': [
 			{
-				'question': 'How did Theresa May’s former aide complain about Juncker’s aide?';
+				'question': 'How did Theresa May’s former aide complain about Juncker’s aide?',
 				'answers': [
 					{
 						'option': 'A',
@@ -30,7 +30,7 @@ const articles = [
 		'title': 'Allies of Juncker and May clash over an account of private dinner',
 		'fact_check': [
 			{
-				'question': 'True or False? Columnist Izabella Kaminska thinks voice interface technology could be on the “fast-track to the Museum of Failure.';
+				'question': 'True or False? Columnist Izabella Kaminska thinks voice interface technology could be on the “fast-track to the Museum of Failure.',
 				'answers': [
 					{
 						'value': 'True',
@@ -49,7 +49,7 @@ const articles = [
 		'title': 'Rich People’s Problems: Should I sell my unreliable Aston Martin?',
 		'fact_check': [
 			{
-				'question': 'True or False? The name of the writer’s car is Dougal.';
+				'question': 'True or False? The name of the writer’s car is Dougal.',
 				'answers': [
 					{
 						'value': 'True',
