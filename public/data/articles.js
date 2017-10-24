@@ -65,4 +65,4 @@ const articles = [
 	}
 ]
 
-modules.exports = articles;
+module.exports = articles;
