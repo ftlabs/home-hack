@@ -64,16 +64,9 @@ const recordComment = google => {
 	const comment = google.getRawInput();
 
 	console.log('USER COMMENT::', comment);
-	analyseUserComment(comment, google);
 
-	google.ask(`Please wait while we analyse your comment.`);
+	google.ask(`Are you sure you want to publish "${comment}"?`);
 };
-
-function analyseUserComment(comment, google) {
-	setTimeout(() => {
-		google.ask(`Are you sure you want to publish ${comment}?`);
-	}, 1000);
-}
 
 const actionMap = new Map();
 actionMap.set(Actions.WELCOME, playWelcome);
