@@ -5,7 +5,7 @@ const router = express.Router();
 const path = require('path');
 
 const data = require('../public/data/articles.js');
-let currentArticle = 0;
+let currentArticle = 1;
 let expectedAnswer;
 
 const { ApiAiApp } = require('actions-on-google');
@@ -47,7 +47,7 @@ const askQuiz = google => {
 const matchAnswer = google => {
 	const userAnswer = google.getRawInput().toLowerCase();
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
-
+	console.log('OPTION::', expectedAnswer.option);
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
 		reply = `You gave the correct answer. Please record your comment.`
 	}
