@@ -66,7 +66,7 @@ const recordComment = google => {
 	console.log('USER COMMENT::', comment);
 	analyseUserComment(comment, google);
 
-	google.tell(`Please wait while we analyse your comment.`);
+	google.ask(`Please wait while we analyse your comment.`);
 };
 
 function analyseUserComment(comment, google) {
