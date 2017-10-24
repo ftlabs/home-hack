@@ -47,10 +47,9 @@ const askQuiz = google => {
 const matchAnswer = google => {
 	const userAnswer = google.getRawInput().toLowerCase();
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
-	console.log('OPTION::', expectedAnswer.option);
-	// if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
-	// 	reply = `You gave the correct answer. Please record your comment.`
-	// }
+	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
+		reply = `You gave the correct answer. Please record your comment.`
+	}
 	google.ask(reply);
 };
 
