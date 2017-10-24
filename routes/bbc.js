@@ -46,6 +46,7 @@ const askQuiz = google => {
 
 const matchAnswer = google => {
 	console.log('ANSWER:::', expectedAnswer);
+	console.log('INPUT:::', google.getRawInput);
 	google.ask(`You gave the correct answer.`);
 };
 
