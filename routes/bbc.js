@@ -22,7 +22,7 @@ const Context = {
 }
 
 const playWelcome = google => {
-	google.setContext('ASK_LEAVE_COMMENT');
+	google.setContext(Comment.ASK_LEAVE_COMMENT);
 	google.ask(`Hello Lily, you've read 3 stories today. The last article you read is ${data[currentArticle].title}. Would you like to leave a comment on it?`);
 };
 
