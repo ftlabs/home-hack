@@ -15,12 +15,14 @@ process.env.DEBUG = 'actions-on-google:*';
 const Actions = {
   WELCOME: 'BBC.welcome',
   ASK: 'BBC.comment', 
-  ANSWER: 'BBC.answer'
+  ANSWER: 'BBC.answer',
+  RECORD: 'BBC.record'
 };
 
 const Context = {
 	ASK_LEAVE_COMMENT: 'leave_comment',
-	CHECK_QUIZ_ANWSER: 'answer_quiz'
+	CHECK_QUIZ_ANWSER: 'answer_quiz',
+	CAN_LEAVE_COMMENT: 'record_comment' 
 }
 
 const playWelcome = google => {
@@ -50,15 +52,25 @@ const matchAnswer = google => {
 	let reply = `Sorry that's not the correct answer, would you like to try another question?`;
 
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
+		google.setContext(Context.CAN_LEAVE_COMMENT, 10);
 		reply = `You gave the correct answer. Please record your comment.`
 	}
 	google.ask(reply);
+};
+
+const recordComment = google => {
+	const comment = google.getRawInput();
+
+	console.log('USER COMMENT::', comment);
+
+	google.tell(`Please wait while we analyse your comment.`);
 };
 
 const actionMap = new Map();
 actionMap.set(Actions.WELCOME, playWelcome);
 actionMap.set(Actions.ASK, askQuiz);
 actionMap.set(Actions.ANSWER, matchAnswer);
+actionMap.set(Actions.RECORD, recordComment);
 
 router.post('/', (request, response) => {
   const google = new ApiAiApp({ request, response });
