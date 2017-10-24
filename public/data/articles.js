@@ -5,6 +5,7 @@ const articles = [
 		'fact_check': [
 			{
 				'question': 'How did Theresa May’s former aide complain about Juncker’s aide?',
+				'hasOptions': true,
 				'answers': [
 					{
 						'option': 'A',
@@ -31,6 +32,7 @@ const articles = [
 		'fact_check': [
 			{
 				'question': 'True or False? Columnist Izabella Kaminska thinks voice interface technology could be on the “fast-track to the Museum of Failure.',
+				'hasOptions':false,
 				'answers': [
 					{
 						'value': 'True',
@@ -50,6 +52,7 @@ const articles = [
 		'fact_check': [
 			{
 				'question': 'True or False? The name of the writer’s car is Dougal.',
+				'hasOptions': false,
 				'answers': [
 					{
 						'value': 'True',

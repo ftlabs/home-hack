@@ -28,7 +28,15 @@ const playWelcome = google => {
 };
 
 const askQuiz = google => {
-	google.ask(`Great, to make sure you read the story, answer one question about the article correctly.`);
+	const question = data[currentArticle].fact_check[0];
+	let options = '';
+	if(question.hasOptions) {
+		for(let i = 0; i < question.answers.length; ++i) {
+			options += `${question.answers.option}) ${question.answers.value}. `;
+		}
+	}
+
+	google.ask(`Great, to make sure you read the story, answer one question about the article correctly. ${question.question} ${options}`);
 };
 
 const matchAnswer = google => {
