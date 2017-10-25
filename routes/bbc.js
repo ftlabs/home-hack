@@ -90,8 +90,6 @@ const recordComment = google => {
 		}
 	};
 
-	google.setContext(CONFIRM_COMMENT, 10);
-
 	return fetch(SENTIMENT_API, options)
 	.then(res => {
 		if(res.ok){
@@ -106,6 +104,9 @@ const recordComment = google => {
 		const charge = data.swear_count*SWEAR_PRICE;
 		let reply = (charge > 0)?`You will be charged £${charge} for your swear words. `:'';
 		reply += `Are you sure you want to publish "${comment}"?`;
+
+
+		google.setContext(CONFIRM_COMMENT, 10);
 		return google.ask(`<speak>${reply}</speak>`);
 	})
 	.catch(err => {
