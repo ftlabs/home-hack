@@ -23,17 +23,19 @@ const Actions = {
   ASK: 'BBC.comment', 
   ANSWER: 'BBC.answer',
   RECORD: 'BBC.record'
+  PICK: "BBC.pick"
 };
 
 const Context = {
+	CHOOSE_ACTION: 'choose_action', 
 	ASK_LEAVE_COMMENT: 'leave_comment',
 	CHECK_QUIZ_ANWSER: 'answer_quiz',
-	CAN_LEAVE_COMMENT: 'record_comment' 
+	CAN_LEAVE_COMMENT: 'record_comment'
 }
 
 const playWelcome = google => {
 	//TODO change context + add map action
-	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
+	google.setContext(Context.CHOOSE_ACTION, 1);
 	google.ask(`Hi ${USER}, other readers are discussing the articles you read today. Which article would you like to talk about? The last one you read, or do you want me to repeat the articles for you?`);
 };
 
@@ -78,7 +80,7 @@ const recordComment = google => {
 	console.log('USER COMMENT::', comment);
 	//TODO: analyse in promise + try and play mp3
 	
-	google.ask(`<speak><audio src="${AUDIO_URL}">Ka-ching!</audio> £1 in the swear jar. Are you sure you want to publish "${comment}"?</speak>`);
+	google.ask(`<speak>£1 in the swear jar. Are you sure you want to publish "${comment}"?</speak>`);
 };
 
 const actionMap = new Map();
@@ -86,6 +88,7 @@ actionMap.set(Actions.WELCOME, playWelcome);
 actionMap.set(Actions.ASK, askQuiz);
 actionMap.set(Actions.ANSWER, matchAnswer);
 actionMap.set(Actions.RECORD, recordComment);
+actionMap.set(Actions.PICK, pickLastArticle);
 
 router.post('/', (request, response) => {
   const google = new ApiAiApp({ request, response });
