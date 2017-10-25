@@ -10,7 +10,7 @@ let expectedAnswer;
 
 //TODO: move these to .env
 const USER = 'Martin';
-const AUDIO_URL = 'https://home-hack.heroku.com/audio/';
+const AUDIO_URL = 'https://home-hack.heroku.com/public/audio/';
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -75,7 +75,8 @@ const recordComment = google => {
 
 	console.log('USER COMMENT::', comment);
 	//TODO: analyse in promise + try and play mp3
-	google.ask(`<speak><audio src="${AUDIO_URL}Mario-coin-sound.mp3">Ka-ching!</audio> £1 in the swear jar. Are you sure you want to publish "${comment}"?</speak>`);
+	const mp3Path = path.join(path.resolve(__dirname + '/public/audio/Mario-coin-sound.mp3'));
+	google.ask(`<speak><audio src="${mp3Path}">Ka-ching!</audio> £1 in the swear jar. Are you sure you want to publish "${comment}"?</speak>`);
 };
 
 const actionMap = new Map();
