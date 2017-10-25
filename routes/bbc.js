@@ -80,7 +80,7 @@ const recordComment = google => {
 	console.log('USER COMMENT::', comment);
 	//TODO: analyse in promise + try and play mp3
 	
-	google.ask(`<speak>£1 in the swear jar. Are you sure you want to publish "${comment}"?</speak>`);
+	google.ask(`<speak><audio src="${AUDIO_URL}">£1 in the swear jar.</audio> Are you sure you want to publish "${comment}"?</speak>`);
 };
 
 const actionMap = new Map();
