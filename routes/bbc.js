@@ -42,12 +42,12 @@ const playWelcome = google => {
 	google.setContext(Context.CHOOSE_ACTION, 1);
 	google.ask
 	// google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today.</speak>`);
-	google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today. Would you like to talk about the last one you red, <break time="0.2s" /> "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
+	google.ask(`<speak>Hi ${USER},<break time="0.2s" /> other readers are discussing the ${data.length} articles you red today. Would you like to talk about the last one you red, <break time="0.2s" /> "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
 	// google.setContext(Context.CHOOSE_ACTION, 1);
 };
 
 const pickLastArticle = google => {
-	google.ask(`<speak>OK! Do you want to hear what others had to say or leave a comment?</speak>`);
+	google.ask(`<speak>OK! Do you want to hear what others had to say <break time="0.5s" />or leave a comment?</speak>`);
 	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
 };
 
@@ -65,7 +65,7 @@ const askQuiz = google => {
 	}
 
 	google.setContext(Context.CHECK_QUIZ_ANWSER, 1);
-	google.ask(`<speak>Grate, to make sure you red the story, answer one question about the article. ${question.question} ${options}</speak>`);
+	google.ask(`<speak>Grate,<break time="0.2s" /> to make sure you red the story, answer one question about the article. ${question.question} ${options}</speak>`);
 };
 
 const matchAnswer = google => {
