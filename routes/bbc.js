@@ -92,7 +92,7 @@ const recordComment = google => {
 		console.log('REQUEST::', res);
 		console.log('RESULT::', res);
 	})
-	.catch(err => throw err);
+	.catch(err => console.log(err));
 	
 	google.ask(`<speak>Are you sure you want to publish "${comment}"?</speak>`);
 };
