@@ -107,7 +107,7 @@ const recordComment = google => {
 		console.log(data);
 		const charge = data.swear_count*SWEAR_PRICE;
 		let reply = (charge > 0)?`You will be charged £${charge.toFixed(2)} for your swear words.<break time="0.5s" />`:'';
-		reply += `Are you sure you want to publish "${comment}"?`;
+		reply += `Are you sure you want to publish <break time="0.5s" />"${comment}"?`;
 
 
 		google.setContext(Context.CONFIRM_COMMENT, 10);
