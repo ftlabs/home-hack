@@ -4,7 +4,7 @@ const debug = require('debug')('routes:bcc');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const fetch = require('node-fecth');
+const fetch = require('node-fetch');
 
 const data = require('../public/data/articles.js');
 let currentArticle = 1;
