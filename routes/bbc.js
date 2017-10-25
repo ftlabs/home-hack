@@ -8,6 +8,10 @@ const data = require('../public/data/articles.js');
 let currentArticle = 1;
 let expectedAnswer;
 
+//TODO: move these to .env
+const USER = 'Martin';
+const AUDIO_URL = 'https://home-hack.heroku.com/audio/';
+
 const { ApiAiApp } = require('actions-on-google');
 
 process.env.DEBUG = 'actions-on-google:*';
@@ -26,8 +30,14 @@ const Context = {
 }
 
 const playWelcome = google => {
+	//TODO change context + add map action
 	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
-	google.ask(`Hello Lily, you've read 3 stories today. The last article you read is ${data[currentArticle].title}. Would you like to leave a comment on it?`);
+	google.ask(`Hi ${USER}, other readers are discussing the articles you read today. Which article would you like to talk about? The last one you read, or do you want me to repeat the articles for you?`);
+};
+
+const pickLastArticle = google => {
+	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
+	google.ask(`<speak>OK! The last article you read was "${data[currentArticle].title}".<break time="0.5s" />Do you want to hear what others had to say about the article or leave a comment?</speak>`);
 };
 
 const askQuiz = google => {
@@ -64,8 +74,8 @@ const recordComment = google => {
 	const comment = google.getRawInput();
 
 	console.log('USER COMMENT::', comment);
-
-	google.ask(`Are you sure you want to publish "${comment}"?`);
+	//TODO: analyse in promise + try and play mp3
+	google.ask(`<speak><audio src="${AUDIO_URL}Mario-coin-sound.mp3"></audio> Are you sure you want to publish "${comment}"?</speak>`);
 };
 
 const actionMap = new Map();
