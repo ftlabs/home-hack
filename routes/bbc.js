@@ -13,6 +13,7 @@ let expectedAnswer;
 //TODO: move these to .env
 const USER = 'Martin';
 const SENTIMENT_API = process.env.SENTIMENT_API;
+const SWEAR_PRICE = 0.2;
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -98,11 +99,14 @@ const recordComment = google => {
 	.then(res => res.json())
 	.then(data => {
 		console.log(data);
-		return data;
+		const charge = data.swear_count*SWEAR_PRICE;
+		let reply = (charge > 0)?`You will be charged £${charge} for your swear words.`:'';
+		reply += `Are you sure you want to publish "${comment}"?`;
+		return google.ask(`<speak>${reply}</speak>`);
 	})
 	.catch(err => console.log(err));
 	
-	google.ask(`<speak>Are you sure you want to publish "${comment}"?</speak>`);
+	google.ask(`<speak>Sorry I could not process your comment. Please try again.</speak>`);
 };
 
 const actionMap = new Map();
