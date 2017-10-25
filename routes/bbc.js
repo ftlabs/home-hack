@@ -10,10 +10,8 @@ const data = require('../public/data/articles.js');
 let currentArticle = 1;
 let expectedAnswer;
 
-//TODO: move these to .env
-const USER = 'Lily';
-const SENTIMENT_API = process.env.SENTIMENT_API;
-const SWEAR_PRICE = 0.2;
+//TODO: move these to .env const USER = 'Lily'; const SENTIMENT_API =
+process.env.SENTIMENT_API; const SWEAR_PRICE = 0.2;
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -39,12 +37,12 @@ const Context = {
 const playWelcome = google => {
 	//TODO change context + add map action
 	google.setContext(Context.CHOOSE_ACTION, 1);
-	google.ask(`Hi ${USER}, other readers are discussing the articles you read today. Which article would you like to talk about? The last one you read, or do you want me to repeat the articles for you?`);
+	google.ask(`Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}"; <break time="0.5s" />or another one?`);
 };
 
 const pickLastArticle = google => {
 	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
-	google.ask(`<speak>OK! The last article you read was "${data[currentArticle].title}".<break time="0.5s" />Do you want to hear what others had to say about the article or leave a comment?</speak>`);
+	google.ask(`<speak>OK! Do you want to hear what others had to say or leave a comment?</speak>`);
 };
 
 const askQuiz = google => {
@@ -61,7 +59,7 @@ const askQuiz = google => {
 	}
 
 	google.setContext(Context.CHECK_QUIZ_ANWSER, 1);
-	google.ask(`Great, to make sure you read the story, answer one question about the article correctly. ${question.question} ${options}`);
+	google.ask(`Grate, to make sure you red the story, answer one question about the article correctly. ${question.question} ${options}`);
 };
 
 const matchAnswer = google => {
@@ -71,7 +69,7 @@ const matchAnswer = google => {
 	let setContext = Context.CHECK_QUIZ_ANWSER;
 
 	if(userAnswer.startsWith(expectedAnswer.option.toLowerCase()) || userAnswer === expectedAnswer.value.toLowerCase()) {
-		reply = `You gave the correct answer. Please record your comment.`
+		reply = `Correct. Go ahead and record your comment.`
 	}
 
 	google.ask(reply);

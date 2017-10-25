@@ -31,7 +31,7 @@ const articles = [
 		'title': 'The voice recognition revolution is a long time coming',
 		'fact_check': [
 			{
-				'question': 'True or False? Columnist Izabella Kaminska thinks voice interface technology could be on the “fast-track to the Museum of Failure.',
+				'question': 'True or False? The columnist thinks voice technology could be on the "fast-track to the Museum of Failure".',
 				'hasOptions':false,
 				'answers': [
 					{
