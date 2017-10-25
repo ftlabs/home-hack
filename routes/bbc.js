@@ -90,7 +90,7 @@ const recordComment = google => {
 		}
 	};
 
-	google.setContext(CONFIRM_COMMENT, 1);
+	google.setContext(CONFIRM_COMMENT, 10);
 
 	return fetch(SENTIMENT_API, options)
 	.then(res => {
@@ -115,6 +115,7 @@ const recordComment = google => {
 };
 
 const postComment = google => {
+	console.log('POSTING');
 	google.tell(`Thanks, I've posted your comment.`);
 }
 
