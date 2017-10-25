@@ -79,7 +79,15 @@ const recordComment = google => {
 
 	console.log('USER COMMENT::', comment);
 	//TODO: analyse in promise + try and play mp3
-	fetch(SENTIMENT_API, {'method': 'POST', body: JSON.stringify({'sentences': [comment]}), headers : {'Content-Type' : 'application/json'}})
+	const options = {
+		method: 'POST', 
+		body: JSON.stringify({'sentences': [comment]}), 
+		headers : {
+			'Content-Type' : 'application/json'
+		}
+	};
+
+	fetch(SENTIMENT_API, options)
 	.then(res => {
 		console.log('RESULT::', res);
 	})
