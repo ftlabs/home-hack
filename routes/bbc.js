@@ -10,8 +10,8 @@ let expectedAnswer;
 
 //TODO: move these to .env
 const USER = 'Martin';
-const AUDIO_URL = 'https://home-hack.heroku.com/public/audio/';
-const mp3Path = path.resolve(path.join(__dirname, '../public/audio/Mario-coin-sound.mp3'));
+const AUDIO_URL = 'https://home-hack.heroku.com/audio/Mario-coin-sound.mp3';
+// const mp3Path = path.resolve(path.join(__dirname, '../public/audio/Mario-coin-sound.mp3'));
 console.log(mp3Path);
 
 const { ApiAiApp } = require('actions-on-google');
