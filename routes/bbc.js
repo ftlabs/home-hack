@@ -88,9 +88,11 @@ const recordComment = google => {
 	};
 
 	fetch(SENTIMENT_API, options)
-	.then(res => {
+	.then((req, res) => {
+		console.log('REQUEST::', res);
 		console.log('RESULT::', res);
 	})
+	.catch(err => throw err);
 	
 	google.ask(`<speak>Are you sure you want to publish "${comment}"?</speak>`);
 };
