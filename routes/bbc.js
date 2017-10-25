@@ -11,7 +11,7 @@ let currentArticle = 1;
 let expectedAnswer;
 
 //TODO: move these to .env
-const USER = 'Martin';
+const USER = 'Lily';
 const SENTIMENT_API = process.env.SENTIMENT_API;
 const SWEAR_PRICE = 0.2;
 
@@ -102,7 +102,7 @@ const recordComment = google => {
 	.then(data => {
 		console.log(data);
 		const charge = data.swear_count*SWEAR_PRICE;
-		let reply = (charge > 0)?`You will be charged £${charge} for your swear words. `:'';
+		let reply = (charge > 0)?`You will be charged £${charge.toFixed(2)} for your swear words. `:'';
 		reply += `Are you sure you want to publish "${comment}"?`;
 
 
