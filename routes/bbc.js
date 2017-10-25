@@ -122,6 +122,7 @@ actionMap.set(Actions.ASK, askQuiz);
 actionMap.set(Actions.ANSWER, matchAnswer);
 actionMap.set(Actions.RECORD, recordComment);
 actionMap.set(Actions.PICK, pickLastArticle);
+actionMap.set(Actions.CONFIRM, postComment);
 
 router.post('/', (request, response) => {
   const google = new ApiAiApp({ request, response });
