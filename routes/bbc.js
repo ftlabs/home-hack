@@ -88,9 +88,8 @@ const recordComment = google => {
 	};
 
 	fetch(SENTIMENT_API, options)
-	.then((req, res) => {
-		console.log('REQUEST::', res);
-		console.log('RESULT::', res);
+	.then(res => {
+		console.log('RESULT::', res.json());
 	})
 	.catch(err => console.log(err));
 	
