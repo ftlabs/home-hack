@@ -1,8 +1,10 @@
 'use strict';
+require('dotenv').config();
 const debug = require('debug')('routes:bcc');
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const fetch = require('node-fecth');
 
 const data = require('../public/data/articles.js');
 let currentArticle = 1;
@@ -10,7 +12,7 @@ let expectedAnswer;
 
 //TODO: move these to .env
 const USER = 'Martin';
-
+const SENTIMENT_API = process.env.SENTIMENT_API;
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -77,6 +79,10 @@ const recordComment = google => {
 
 	console.log('USER COMMENT::', comment);
 	//TODO: analyse in promise + try and play mp3
+	fetch(SENTIMENT_API, {'method': 'POST', body: {'sentences': [comment]}})
+	.then(res => {
+		console.log('RESULT::', res);
+	})
 	
 	google.ask(`<speak>Are you sure you want to publish "${comment}"?</speak>`);
 };
