@@ -37,7 +37,7 @@ const Context = {
 const playWelcome = google => {
 	//TODO change context + add map action
 	google.setContext(Context.CHOOSE_ACTION, 1);
-	google.ask(`Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}"; <break time="0.5s" />or another one?`);
+	google.ask(`<speak>Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}"; <break time="0.5s" />or another one?</speak>`);
 };
 
 const pickLastArticle = google => {
