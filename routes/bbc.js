@@ -106,7 +106,7 @@ const recordComment = google => {
 		reply += `Are you sure you want to publish "${comment}"?`;
 
 
-		google.setContext(CONFIRM_COMMENT, 10);
+		google.setContext(Context.CONFIRM_COMMENT, 10);
 		return google.ask(`<speak>${reply}</speak>`);
 	})
 	.catch(err => {
