@@ -42,7 +42,7 @@ const playWelcome = google => {
 	google.setContext(Context.CHOOSE_ACTION, 1);
 	google.ask
 	// google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today.</speak>`);
-	google.ask(`<speak>Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
+	google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today. Would you like to talk about the last one you red, <break time="0.2s" /> "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
 	// google.setContext(Context.CHOOSE_ACTION, 1);
 };
 
