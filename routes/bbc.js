@@ -22,8 +22,8 @@ const Actions = {
   WELCOME: 'BBC.welcome',
   ASK: 'BBC.comment', 
   ANSWER: 'BBC.answer',
-  RECORD: 'BBC.record'
-  PICK: "BBC.pick"
+  RECORD: 'BBC.record',
+  PICK: 'BBC.pick'
 };
 
 const Context = {
