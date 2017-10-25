@@ -38,13 +38,13 @@ const playWelcome = google => {
 	//TODO change context + add map action
 	console.log('PLAY WELCOME:::');
 	console.log(google);
-	google.setContext(Context.CHOOSE_ACTION, 1);
 	google.ask(`<speak>Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
+	google.setContext(Context.CHOOSE_ACTION, 1);
 };
 
 const pickLastArticle = google => {
-	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
 	google.ask(`<speak>OK! Do you want to hear what others had to say or leave a comment?</speak>`);
+	google.setContext(Context.ASK_LEAVE_COMMENT, 1);
 };
 
 const askQuiz = google => {
