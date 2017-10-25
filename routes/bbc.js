@@ -10,7 +10,8 @@ const data = require('../public/data/articles.js');
 let currentArticle = 1;
 let expectedAnswer;
 
-//TODO: move these to .env const USER = 'Lily'; const SENTIMENT_API =
+//TODO: move these to .env 
+const USER = 'Lily'; const SENTIMENT_API =
 process.env.SENTIMENT_API; const SWEAR_PRICE = 0.2;
 
 const { ApiAiApp } = require('actions-on-google');
@@ -39,8 +40,9 @@ const playWelcome = google => {
 	console.log('PLAY WELCOME:::');
 	console.log(google);
 	google.setContext(Context.CHOOSE_ACTION, 1);
-	google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today.</speak>`);
-	// google.ask(`<speak>Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
+	google.ask
+	// google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today.</speak>`);
+	google.ask(`<speak>Hi ${USER}, other readers are discussing the articles you red today. Would you like to talk about the last one you red, "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
 	// google.setContext(Context.CHOOSE_ACTION, 1);
 };
 
