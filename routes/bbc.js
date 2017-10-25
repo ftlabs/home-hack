@@ -24,14 +24,16 @@ const Actions = {
   ASK: 'BBC.comment', 
   ANSWER: 'BBC.answer',
   RECORD: 'BBC.record',
-  PICK: 'BBC.pick'
+  PICK: 'BBC.pick',
+  CONFIRM: 'BBC.confirm'
 };
 
 const Context = {
 	CHOOSE_ACTION: 'choose_action', 
 	ASK_LEAVE_COMMENT: 'leave_comment',
 	CHECK_QUIZ_ANWSER: 'answer_quiz',
-	CAN_LEAVE_COMMENT: 'record_comment'
+	CAN_LEAVE_COMMENT: 'record_comment',
+	CONFIRM_COMMENT:   'confirm_comment'
 }
 
 const playWelcome = google => {
@@ -109,6 +111,10 @@ const recordComment = google => {
 		google.ask(`<speak>Sorry I could not process your comment. Please try again.</speak>`);
 	});
 };
+
+const postComment = google => {
+	google.tell(`Thanks, I've posted your comment.`);
+}
 
 const actionMap = new Map();
 actionMap.set(Actions.WELCOME, playWelcome);
