@@ -88,7 +88,7 @@ const recordComment = google => {
 		}
 	};
 
-	fetch(SENTIMENT_API, options)
+	return fetch(SENTIMENT_API, options)
 	.then(res => {
 		if(res.ok){
 			return res;
@@ -104,9 +104,10 @@ const recordComment = google => {
 		reply += `Are you sure you want to publish "${comment}"?`;
 		return google.ask(`<speak>${reply}</speak>`);
 	})
-	.catch(err => console.log(err));
-	
-	google.ask(`<speak>Sorry I could not process your comment. Please try again.</speak>`);
+	.catch(err => {
+		console.log(err);
+		google.ask(`<speak>Sorry I could not process your comment. Please try again.</speak>`);
+	});
 };
 
 const actionMap = new Map();
