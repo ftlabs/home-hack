@@ -90,6 +90,8 @@ const recordComment = google => {
 		}
 	};
 
+	google.setContext(CONFIRM_COMMENT, 1);
+
 	return fetch(SENTIMENT_API, options)
 	.then(res => {
 		if(res.ok){
