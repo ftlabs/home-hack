@@ -10,9 +10,9 @@ const data = require('../public/data/articles.js');
 let currentArticle = 1;
 let expectedAnswer;
 
-//TODO: move these to .env 
-const USER = 'Lily'; const SENTIMENT_API =
-process.env.SENTIMENT_API; const SWEAR_PRICE = 0.2;
+const USER = process.env.USER; 
+const SENTIMENT_API = process.env.SENTIMENT_API; 
+const SWEAR_PRICE = 0.2;
 
 const { ApiAiApp } = require('actions-on-google');
 
@@ -36,14 +36,8 @@ const Context = {
 }
 
 const playWelcome = google => {
-	//TODO change context + add map action
-	console.log('PLAY WELCOME:::');
-	console.log(google);
 	google.setContext(Context.CHOOSE_ACTION, 1);
-	google.ask
-	// google.ask(`<speak>Hi ${USER}, other readers are discussing the ${data.length} articles you red today.</speak>`);
 	google.ask(`<speak>Hi ${USER},<break time="0.2s" /> other readers are discussing the ${data.length} articles you red today. Would you like to talk about the last one you red, <break time="0.2s" /> "${data[currentArticle].title}" <break time="0.5s" /> or another one?</speak>`);
-	// google.setContext(Context.CHOOSE_ACTION, 1);
 };
 
 const pickLastArticle = google => {
@@ -85,7 +79,7 @@ const recordComment = google => {
 	const comment = google.getRawInput();
 
 	console.log('USER COMMENT::', comment);
-	//TODO: analyse in promise + try and play mp3
+
 	const options = {
 		method: 'POST', 
 		body: JSON.stringify({'sentences': [comment]}), 
@@ -104,7 +98,6 @@ const recordComment = google => {
 	})
 	.then(res => res.json())
 	.then(data => {
-		console.log(data);
 		const charge = data.swear_count*SWEAR_PRICE;
 		let reply = (charge > 0)?`You will be charged £${charge.toFixed(2)} for your swear words.<break time="0.5s" />`:'';
 		reply += `Are you sure you want to publish <break time="0.5s" />"${comment}"?`;
@@ -120,7 +113,6 @@ const recordComment = google => {
 };
 
 const postComment = google => {
-	console.log('POSTING');
 	google.tell(`Thanks, I've posted your comment.`);
 }
 
